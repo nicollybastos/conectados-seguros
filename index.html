@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectados & Seguros | Portal de Notícias e Segurança Digital</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --g1-red: #c4170c;
+            --g1-red-dark: #9e1108;
+            --g1-gray-bg: #f5f6f7;
+            --g1-text-dark: #111111;
+            --g1-text-gray: #666666;
+            --g1-border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--g1-gray-bg);
+            color: var(--g1-text-dark);
+            line-height: 1.6;
+        }
+
+        /* HEADER G1 STYLE */
+        header {
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--g1-red);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .top-bar {
+            background-color: var(--g1-red);
+            color: white;
+            text-align: center;
+            padding: 6px 15px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .header-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--g1-text-dark);
+        }
+
+        .logo-area img {
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .logo-text h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--g1-red);
+            text-transform: uppercase;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--g1-text-gray);
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--g1-text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover {
+            color: var(--g1-red);
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1180px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* HERO SECTION (DESTAQUE PRINCIPAL) */
+        .hero-news {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            border-top: 4px solid var(--g1-red);
+        }
+
+        .hero-content {
+            padding: 30px;
+        }
+
+        .tag {
+            background-color: var(--g1-red);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .hero-content h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--g1-text-gray);
+            margin-bottom: 20px;
+        }
+
+        .metadata {
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid var(--g1-border);
+            padding-top: 15px;
+        }
+
+        .hero-sidebar-info {
+            background: #fafafa;
+            padding: 30px;
+            border-left: 1px solid var(--g1-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-sidebar-info h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--g1-red);
+        }
+
+        .hero-sidebar-info ul {
+            padding-left: 18px;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .hero-sidebar-info li {
+            margin-bottom: 8px;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border-bottom: 2px solid var(--g1-red);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            color: #222;
+        }
+
+        /* GRID DE CASOS (NEWS GRID) */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 3px solid #ddd;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-top-color: var(--g1-red);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .card-body p {
+            font-size: 0.95rem;
+            color: var(--g1-text-gray);
+            margin-bottom: 15px;
+        }
+
+        .btn-read {
+            background-color: transparent;
+            color: var(--g1-red);
+            border: 2px solid var(--g1-red);
+            padding: 8px 15px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-read:hover {
+            background-color: var(--g1-red);
+            color: white;
+        }
+
+        /* FORMATOS DE DIVULGAÇÃO (BANNER) */
+        .formats-section {
+            background: white;
+            padding: 30px;
+            border-radius: 4px;
+            margin-bottom: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .format-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid var(--g1-red);
+            border-radius: 2px;
+        }
+
+        .format-box h4 {
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        /* MODAL PARA OS CASOS COMPLETOS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 40px;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .close-modal:hover {
+            color: var(--g1-red);
+        }
+
+        .modal-content h2 {
+            font-family: 'Roboto', sans-serif;
+            color: var(--g1-red);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .modal-content h3 {
+            font-family: 'Roboto', sans-serif;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 12px;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 4px solid var(--g1-red);
+        }
+
+        .footer-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--g1-red);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .footer-col p, .footer-col ul {
+            font-size: 0.9rem;
+            color: #aaa;
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            .hero-news {
+                grid-template-columns: 1fr;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar G1 Style -->
+    <div class="top-bar">
+        <span>G1 ESPECIAL • PROJETO DIRIGIDO • UNIVERSIDADE FEDERAL DO ABC (UFABC)</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo-area">
+                <!-- Certifique-se de salvar sua logo como logo.png na mesma pasta -->
+                <img src="logo.png" alt="Logo Conectados & Seguros" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <h1>Conectados & Seguros</h1>
+                    <p>Segurança Digital e Prevenção de Golpes para Idosos</p>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#destaque">Início</a></li>
+                    <li><a href="#casos">Casos Analisados</a></li>
+                    <li><a href="#formatos">Formatos</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" id="destaque">
+        <!-- Hero Section -->
+        <div class="hero-news">
+            <div class="hero-content">
+                <span class="tag">Utilidade Pública & Inclusão Digital</span>
+                <h2>Conectados & Seguros: O desafio da proteção digital e letramento para a terceira idade</h2>
+                <p>Com a crescente migração de serviços essenciais e financeiros para o ambiente virtual, idosos enfrentam barreiras e tornam-se alvos preferenciais de fraudes cibernéticas. Conheça a campanha multimídia desenvolvida em Santo André que traduz termos complexos em orientações práticas de segurança.</p>
+                <div class="metadata">
+                    Santo André, 2026 • Baseado no Trabalho Parcial de Conclusão (UFABC)
+                </div>
+            </div>
+            <div class="hero-sidebar-info">
+                <h3>Alinhamento ODS (ONU)</h3>
+                <ul>
+                    <li><strong>ODS 10:</strong> Redução das Desigualdades (Inclusão tecnológica).</li>
+                    <li><strong>ODS 3:</strong> Saúde e Bem-Estar (Proteção patrimonial e mental).</li>
+                    <li><strong>ODS 16:</strong> Paz, Justiça e Instituições Eficazes (Combate a fraudes).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Casos Estudados -->
+        <h2 class="section-title" id="casos">Os 5 Casos de Golpes Estudados e Abordados</h2>
+        
+        <div class="news-grid">
+            <!-- Caso 1 -->
+            <div class="news-card">
+                <div class="card-body">
+                    <div>
+                        <span class="tag" style="background: #333;">Caso 1</span>
+                        <h3>O Golpe do Falso Familiar via WhatsApp</h3>
+                        <p>Criminosos utilizam engenharia social e perfis falsos com fotos obtidas em redes sociais para se passar por filhos ou netos, alegando troca de número e solicitando transferências Pix urgentes.</p>
+                    </div>
+                    <button class="btn-read" onclick="openModal('modal1')">Ler Caso Completo</button>
+                </div>
+            </div>
+
+            <!-- Caso 2 -->
+            <div class="news-card">
+                <div class="card-body">
+                    <div>
+                        <span class="tag" style="background: #333;">Caso 2</span>
+                        <h3>O Golpe das Abordagens Bancárias</h3>
+                        <p>Falsos funcionários de instituições financeiras entram em contato alegando invasão de contas ou oferecendo vantagens para capturar senhas e dados sigilosos das vítimas.</p>
+                    </div>
+                    <button class="btn-read" onclick="openModal('modal2')">Ler Caso Completo</button>
+                </div>
+            </div>
+
+            <!-- Caso 3 -->
+            <div class="news-card">
+                <div class="card-body">
+                    <div>
+                        <span class="tag" style="background: #333;">Caso 3</span>
+                        <h3>Phishing por SMS e Links Maliciosos</h3>
+                        <p>Conhecido como smishing, o envio de mensagens de texto com links falsos induz o usuário a acessar páginas fraudulentas para roubo de credenciais bancárias e dados pessoais.</p>
+                    </div>
+                    <button class="btn-read" onclick="openModal('modal3')">Ler Caso Completo</button>
+                </div>
+            </div>
+
+            <!-- Caso 4 -->
+            <div class="news-card">
+                <div class="card-body">
+                    <div>
+                        <span class="tag" style="background: #333;">Caso 4</span>
+                        <h3>A Falsa Central de Atendimento Telefônico</h3>
+                        <p>Centrais clandestinas utilizam robôs e operadores simulando o suporte oficial de bancos para obter confirmações de transações e códigos de segurança.</p>
+                    </div>
+                    <button class="btn-read" onclick="openModal('modal4')">Ler Caso Completo</button>
+                </div>
+            </div>
+
+            <!-- Caso 5 -->
+            <div class="news-card">
+                <div class="card-body">
+                    <div>
+                        <span class="tag" style="background: #333;">Caso 5</span>
+                        <h3>Promoções Irrecusáveis e E-commerce Falso</h3>
+                        <p>Sites falsos imitam grandes varejistas oferecendo produtos com descontos absurdos, capturando dados de cartões de crédito sem efetuar a entrega das mercadorias.</p>
+                    </div>
+                    <button class="btn-read" onclick="openModal('modal5')">Ler Caso Completo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formatos da Campanha -->
+        <h2 class="section-title" id="formatos">Formatos Multimídia da Campanha</h2>
+        <div class="formats-section">
+            <p>Para assegurar o alcance democrático e atingir tanto os idosos quanto suas redes de apoio (filhos, netos e cuidadores), a campanha estruturou-se em três frentes complementares:</p>
+            <div class="formats-grid">
+                <div class="format-box">
+                    <h4>📱 Perfil Educativo no Instagram</h4>
+                    <p>Focado em carrosséis explicativos e vídeos curtos, ideal para orientar familiares e capacitar idosos conectados no combate visual a golpes digitais.</p>
+                </div>
+                <div class="format-box">
+                    <h4>📰 Jornal Impresso Informativo</h4>
+                    <p>Desenvolvido para combater a exclusão digital, distribuído em UBS, centros comunitários e igrejas, garantindo alta confiabilidade e tangibilidade.</p>
+                </div>
+                <div class="format-box">
+                    <h4>💻 Portal de Notícias Web</h4>
+                    <p>Repositório permanente e auditável com artigos aprofundados, dados estatísticos e ferramentas de verificação para consulta rápida.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipe -->
+        <h2 class="section-title" id="equipe">Equipe e Autoria</h2>
+        <div class="formats-section">
+            <p><strong>Instituição:</strong> Universidade Federal do ABC (UFABC) — Bacharelado em Ciência e Tecnologia</p>
+            <p><strong>Disciplina:</strong> Projeto Dirigido</p>
+            <p><strong>Orientação:</strong> Profa. Dra. Maria Cristina Carlan da Silva</p>
+            <p style="margin-top: 15px;"><strong>Discentes Autores:</strong></p>
+            <ul style="list-style: square; padding-left: 20px; margin-top: 5px; color: #444;">
+                <li>Bruna Constantini (RA 11202130273)</li>
+                <li>Nicolly Goes Bastos (RA 11202422093)</li>
+                <li>Pablo Alexandre Nogueira de Oliveira (RA 11202332379)</li>
+                <li>Pedro Takeo Franca Tamanaga (RA 11202420804)</li>
+                <li>Otavio Damo Bueno (RA 11202321286)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MODAIS COM OS TEXTOS DOS CASOS -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal1')">×</span>
+            <h2>Caso 1: O Golpe do Falso Familiar via WhatsApp</h2>
+            <h3>Origem e Evolução Histórica</h3>
+            <p>O golpe evoluiu do antigo "falso sequestro" por ligações telefônicas nos anos 2000 para a troca de mensagens instantâneas via WhatsApp. Com o vazamento de dados e IA generativa, golpistas hoje conseguem clonar fotos e até utilizar áudios sintéticos (deepfakes) de familiares.</p>
+            <h3>Mecanismo de Manipulação Psicossocial</h3>
+            <p>Os criminosos exploram a empatia, o afeto e o pânico imediato. A urgência fabricada ("estou com problema no banco", "preciso pagar um boleto urgente") bloqueia a capacidade analítica da vítima.</p>
+            <h3>Métodos de Prevenção</h3>
+            <p>Sempre realize uma chamada de áudio ou vídeo para o número antigo do familiar antes de efetuar qualquer Pix. Ative a verificação em duas etapas no WhatsApp e restrinja a visualização da foto de perfil para "Meus contatos".</p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal2')">×</span>
+            <h2>Caso 2: O Golpe das Abordagens Bancárias</h2>
+            <h3>Contextualização</h3>
+            <p>Indivíduos se passam por funcionários de bancos ou centrais de segurança para informar falsas invasões de contas e induzir a vítima a fornecer senhas ou realizar transferências protetivas.</p>
+            <h3>Prevenção</h3>
+            <p>Os bancos nunca solicitam senhas completas, códigos de confirmação ou transferências por telefone. Em caso de dúvida, desligue e ligue para o número oficial impresso no verso do seu cartão.</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal3')">×</span>
+            <h2>Caso 3: Phishing por SMS e Links Maliciosos</h2>
+            <h3>O que é o Smishing?</h3>
+            <p>Mensagens de texto (SMS) falsas que simulam alertas de entregas de encomendas, bancos ou órgãos públicos (como FGTS ou Receita Federal), contendo links maliciosos para roubo de dados.</p>
+            <h3>Prevenção</h3>
+            <p>Nunca clique em links recebidos por SMS de remetentes desconhecidos. Acesse sempre os aplicativos oficiais ou digite o endereço oficial no navegador.</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal4')">×</span>
+            <h2>Caso 4: A Falsa Central de Atendimento Telefônico</h2>
+            <h3>Mecanismo</h3>
+            <p>Uso de ura eletrônica fraudulenta ou atendentes treinados que simulam o tom corporativo de instituições financeiras, induzindo o cliente a digitar senhas no teclado do telefone.</p>
+            <h3>Prevenção</h3>
+            <p>Jamais digite senhas bancárias em chamadas telefônicas iniciadas pelo banco ou por supostos atendentes.</p>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal5')">×</span>
+            <h2>Caso 5: Promoções Irrecusáveis e E-commerce Falso</h2>
+            <h3>Contextualização</h3>
+            <p>Anúncios em redes sociais ou buscadores que divulgam eletrodomésticos e eletrônicos com descontos extremos em lojas virtuais falsificadas.</p>
+            <h3>Prevenção</h3>
+            <p>Desconfie de preços muito abaixo da média de mercado. Verifique a reputação da loja em plataformas oficiais de reclamação e prefira pagar com cartão virtual.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Conectados & Seguros</h4>
+                <p>Campanha educativa de letramento digital e prevenção de golpes para a terceira idade.</p>
+                <p style="margin-top: 10px;">Santo André - SP, 2026</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#destaque" style="color: #aaa; text-decoration: none;">Início da Página</a></li>
+                    <li><a href="#casos" style="color: #aaa; text-decoration: none;">Casos de Estudo</a></li>
+                    <li><a href="#formatos" style="color: #aaa; text-decoration: none;">Formatos Multimídia</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Universidade</h4>
+                <p>Universidade Federal do ABC (UFABC)</p>
+                <p>Bacharelado em Ciência e Tecnologia</p>
+                <p>Projeto Dirigido</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Conectados & Seguros • Desenvolvido para GitHub Pages</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para controle dos Modais -->
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Fechar modal ao clicar fora da caixa de conteúdo
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
